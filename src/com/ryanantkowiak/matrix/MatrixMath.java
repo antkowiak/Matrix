@@ -1,7 +1,21 @@
 package com.ryanantkowiak.matrix;
 
+/**
+ * Math functions on matrices of doubles.
+ * 
+ * @author antko
+ *
+ */
 public class MatrixMath
 {
+	/**
+	 * Calculate the determinant of the given matrix.
+	 * 
+	 * @param m
+	 *            - the matrix to calculate the determinant of
+	 * @return - the determinant of the matrix
+	 * @throws InvalidMatrixDimensionException
+	 */
 	public static double determinant(DoubleMatrix m) throws InvalidMatrixDimensionException
 	{
 		if (null == m)
@@ -13,6 +27,14 @@ public class MatrixMath
 		return determinant(m, m.getRowDimension());
 	}
 
+	/**
+	 * Calculate the determinant of the given sparse matrix.
+	 * 
+	 * @param m
+	 *            - the sparse matrix to calculate the determinant of
+	 * @return - the determinant of the matrix
+	 * @throws InvalidMatrixDimensionException
+	 */
 	public static double determinantSparse(DoubleSparseMatrix m) throws InvalidMatrixDimensionException
 	{
 		if (null == m)
@@ -24,6 +46,13 @@ public class MatrixMath
 		return determinantSparse(m, m.getRowDimension());
 	}
 
+	/**
+	 * Helper function to help calculate a determinant of a matrix.
+	 * 
+	 * @param a
+	 * @param n
+	 * @return
+	 */
 	private static double determinant(DoubleMatrix a, int n)
 	{
 		double det = 0;
@@ -68,6 +97,13 @@ public class MatrixMath
 		return det;
 	}
 
+	/**
+	 * Helper function to help calculate the determinant of a sparse matrix.
+	 * 
+	 * @param a
+	 * @param n
+	 * @return
+	 */
 	private static double determinantSparse(DoubleSparseMatrix a, int n)
 	{
 		double det = 0;
@@ -112,6 +148,13 @@ public class MatrixMath
 		return det;
 	}
 
+	/**
+	 * Compare the dimensions of two given matrices.
+	 * 
+	 * @param m1
+	 * @param m2
+	 * @return
+	 */
 	public static <E> boolean dimensionsEqual(Matrix<E> m1, Matrix<E> m2)
 	{
 		if (m1 == null || m2 == null)
@@ -126,6 +169,14 @@ public class MatrixMath
 		return true;
 	}
 
+	/**
+	 * Add two matrices and return the result in a new matrix.
+	 * 
+	 * @param m1
+	 * @param m2
+	 * @return
+	 * @throws InvalidMatrixDimensionException
+	 */
 	public static DoubleMatrix add(DoubleMatrix m1, DoubleMatrix m2) throws InvalidMatrixDimensionException
 	{
 		if (m1 == null || m2 == null)
@@ -146,6 +197,14 @@ public class MatrixMath
 		return m;
 	}
 
+	/**
+	 * Add two matrices and return the result in a new sparse matrix.
+	 * 
+	 * @param m1
+	 * @param m2
+	 * @return
+	 * @throws InvalidMatrixDimensionException
+	 */
 	public static DoubleSparseMatrix addSparse(DoubleMatrix m1, DoubleMatrix m2) throws InvalidMatrixDimensionException
 	{
 		if (m1 == null || m2 == null)
@@ -171,6 +230,13 @@ public class MatrixMath
 		return m;
 	}
 
+	/**
+	 * Construct and return an identity matrix with dimensions n by n.
+	 * 
+	 * @param n
+	 * @return
+	 * @throws InvalidMatrixDimensionException
+	 */
 	public static DoubleMatrix identity(int n) throws InvalidMatrixDimensionException
 	{
 		if (n < 1)
@@ -184,6 +250,13 @@ public class MatrixMath
 		return m;
 	}
 
+	/**
+	 * Construct and return a sparse identity matrix with dimensions n by n.
+	 * 
+	 * @param n
+	 * @return
+	 * @throws InvalidMatrixDimensionException
+	 */
 	public static DoubleSparseMatrix identitySparse(int n) throws InvalidMatrixDimensionException
 	{
 		if (n < 1)
@@ -197,6 +270,14 @@ public class MatrixMath
 		return m;
 	}
 
+	/**
+	 * Multiply two given matrices and return the result in a new matrix.
+	 * 
+	 * @param m1
+	 * @param m2
+	 * @return
+	 * @throws InvalidMatrixDimensionException
+	 */
 	public static DoubleMatrix multiply(DoubleMatrix m1, DoubleMatrix m2) throws InvalidMatrixDimensionException
 	{
 		if (m1 == null || m2 == null)
@@ -223,6 +304,15 @@ public class MatrixMath
 		return m;
 	}
 
+	/**
+	 * Multiply two given sparse matrices and return the result in a new sparse
+	 * matrix.
+	 * 
+	 * @param m1
+	 * @param m2
+	 * @return
+	 * @throws InvalidMatrixDimensionException
+	 */
 	public static DoubleSparseMatrix multiplySparse(DoubleMatrix m1, DoubleMatrix m2)
 			throws InvalidMatrixDimensionException
 	{
@@ -251,6 +341,13 @@ public class MatrixMath
 		return m;
 	}
 
+	/**
+	 * Multiply the given matrix by a scalar and return the result in a new matrix.
+	 * 
+	 * @param m
+	 * @param scalar
+	 * @return
+	 */
 	public static DoubleMatrix scalarMultiply(DoubleMatrix m, double scalar)
 	{
 		if (m == null)
@@ -265,6 +362,14 @@ public class MatrixMath
 		return v;
 	}
 
+	/**
+	 * Multiply the given sparse matrix by a scalar and return the result in a new
+	 * matrix.
+	 * 
+	 * @param m
+	 * @param scalar
+	 * @return
+	 */
 	public static DoubleMatrix scalarMultiplySparse(DoubleMatrix m, double scalar)
 	{
 		if (m == null)
@@ -283,6 +388,15 @@ public class MatrixMath
 		return v;
 	}
 
+	/**
+	 * Subtract matrix m2 from matrix m1 and return the result in a new matrix.
+	 * (e.g. returns m1-m2).
+	 * 
+	 * @param m1
+	 * @param m2
+	 * @return
+	 * @throws InvalidMatrixDimensionException
+	 */
 	public static DoubleMatrix subtract(DoubleMatrix m1, DoubleMatrix m2) throws InvalidMatrixDimensionException
 	{
 		if (m1 == null || m2 == null)
@@ -303,6 +417,15 @@ public class MatrixMath
 		return m;
 	}
 
+	/**
+	 * Subtract sparse matrix m2 from sparse matrix m1 and return the result in a
+	 * new sparse matrix. (e.g. returns m1-m2).
+	 * 
+	 * @param m1
+	 * @param m2
+	 * @return
+	 * @throws InvalidMatrixDimensionException
+	 */
 	public static DoubleSparseMatrix subtractSparse(DoubleMatrix m1, DoubleMatrix m2)
 			throws InvalidMatrixDimensionException
 	{
